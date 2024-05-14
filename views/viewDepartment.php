@@ -57,7 +57,6 @@ if(isset($_SESSION['admin_name'])){
         <table class="table mt-2">
             <thead>
                 <tr class="text-light">
-                    <td>ID</td>
                     <td>MYANMAR NAME</td>
                     <td>NAME</td>
                     <td>ACTIONS</td> <!-- New column for buttons -->
@@ -72,7 +71,6 @@ if(isset($_SESSION['admin_name'])){
                 if(isset($result)){
                     while($row = $result->fetch()){
                         echo "<tr class='text-light'>
-                                  <td>" . $row['id'] . "</td>
                                   <td>" . $row['mya_name'] . "</td>
                                   <td>" . $row['name'] . "</td>
                                   <td>

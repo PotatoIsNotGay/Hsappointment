@@ -30,10 +30,10 @@ if(isset($_SESSION['admin_name'])){
   <nav class="navbar navbar-expand-lg bg-body-tertiary ">
     <div class="container-fluid">
       <a class="text-decoration-none text-light" href="adminIndex.php"> <i class="fa-solid fa-arrow-left"></i> Back to Home Page </a>
-      <a class="navbar-brand text-light" href="formDoc.php">DOCTOR VIEW </a>
+      <a class="navbar-brand text-light" href="formDoc.php">DOCTOR VIEW</a>
       <a class="" href="../actions/etpLogout.php">
         <button class="btn btn-outline-light">LOGOUT</button>
-        </a>
+      </a>
     </div> 
   </nav>
   <!-- add doc alert  -->
@@ -43,7 +43,6 @@ if(isset($_SESSION['status'])) {
     unset($_SESSION['status']);  // Clear session status after displaying it
 }
 ?>
-
 </div>
 
 <div class="row mt-4">
@@ -54,8 +53,7 @@ if(isset($_SESSION['status'])) {
     <div class="col-lg-9">
         <table class="table mt-1 text-light">
             <thead>
-                <tr class="">
-                    <td>ID</td>
+                <tr>
                     <td>IMAGE FILE</td>
                     <td>NAME</td>
                     <td>AGE</td>
@@ -79,7 +77,6 @@ if(isset($_SESSION['status'])) {
                     if(isset($result)) {
                         while($row = $result->fetch()) {
                             echo "<tr class='text-light'>
-                                    <td>" . $row['docid'] . "</td>
                                     <td>" . $row['image'] . "</td>
                                     <td>" . $row['name'] . "</td>
                                     <td>" . $row['age'] . "</td>
