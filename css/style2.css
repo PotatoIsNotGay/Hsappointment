@@ -1,0 +1,19 @@
+#appo {
+    border: none; /* Remove border */
+}
+
+.ani {
+    transition: all 0.02s; /* Adjust transition duration */
+}
+
+.ani:hover {
+    background-color: #38f4cb; /* Change background color on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+
+}
+
+
+.ft:hover {
+    color: #2ec8a6;
+    box-shadow: 90px;
+}

@@ -1,0 +1,12 @@
+
+.card-body{
+    background-color:#a3e4b5;
+    height: 20rem;
+}
+.card-body h5.card-title{
+    color: #3b3f47;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a box shadow */
+}
