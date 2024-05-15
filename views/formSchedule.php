@@ -57,9 +57,7 @@
             <?php foreach($fetch as $row1): ?>
             <div class="card-body" style="background-color:#f0cea8;">
                 <form action="../actions/updateSchedule.php?sch=<?= $table ;?>" method="post">
-                    <label for="" class="form-label">ID</label>
-                    <input type="text" readonly name="id" placeholder="" class="form-control" value="<?= $row1['id'] ?>">
-                    <br>
+                    
                     <label for="" class="form-label">SCHEDULE</label>
                     <input type="text" name="time" id="" placeholder="" class="form-control" value="<?= $row1['time'] ?>"> 
                     <br>
