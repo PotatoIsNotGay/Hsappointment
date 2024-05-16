@@ -1,6 +1,42 @@
+<?php
+session_start();
+if(isset($_SESSION['admin_name'])){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php
+    include '../dbconn.php';
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+
+    // Retrieve specialist_id from the URL
+    $your_specialist_id = isset($_GET['id']) ? $_GET['id'] : null;
+
+    // Check if a specialist_id is provided
+    if ($your_specialist_id) {
+        $sqlaccept = "SELECT appoiments.id AS id , user_id ,users.name AS user_name , patient_name ,phone_number , doctors.name AS doctor_name , specialists.name AS specialist_name , schedule FROM appoiments,doctors,users,specialists WHERE user_id = users.id AND appoiments.specialist_id = :specialist_id AND doctors.id = appoiments.doctor_id AND specialists.id = appoiments.specialist_id AND accept = 1";
+
+        $sqlyet = "SELECT appoiments.id AS id, users.name AS user_name , patient_name ,phone_number , doctors.name AS doctor_name , specialists.name AS specialist_name , schedule FROM appoiments,doctors,users,specialists WHERE user_id = users.id AND appoiments.specialist_id = :specialist_id AND doctors.id = appoiments.doctor_id AND specialists.id = appoiments.specialist_id AND accept = 0";
+
+        $sql1 = "SELECT * FROM specialists WHERE id = $your_specialist_id";
+                
+        $stmt = $conn->prepare($sqlaccept);
+        $stmy = $conn->prepare($sqlyet);
+        $sql1_run = $conn->query($sql1);
+
+        $stmt->bindParam(':specialist_id', $your_specialist_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $stmy->bindParam(':specialist_id', $your_specialist_id, PDO::PARAM_INT);
+        $stmy->execute();}
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin View</title>
@@ -33,43 +69,15 @@
     <!-- header nav -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#09091a;">
         <div class="container-fluid">
-            <?php
-            include '../dbconn.php';
-
-            try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                // set the PDO error mode to exception
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } catch(PDOException $e) {
-                echo "Connection failed: " . $e->getMessage();
-            }
-
-            // Retrieve specialist_id from the URL
-            $your_specialist_id = isset($_GET['id']) ? $_GET['id'] : null;
-
-            // Check if a specialist_id is provided
-            if ($your_specialist_id) {
-                $sqlaccept = "SELECT appoiments.id AS id , user_id ,users.name AS user_name , patient_name ,phone_number , doctors.name AS doctor_name , specialists.name AS specialist_name , schedule FROM appoiments,doctors,users,specialists WHERE user_id = users.id AND appoiments.specialist_id = :specialist_id AND doctors.id = appoiments.doctor_id AND specialists.id = appoiments.specialist_id AND accept = 1";
-
-                $sqlyet = "SELECT appoiments.id AS id, users.name AS user_name , patient_name ,phone_number , doctors.name AS doctor_name , specialists.name AS specialist_name , schedule FROM appoiments,doctors,users,specialists WHERE user_id = users.id AND appoiments.specialist_id = :specialist_id AND doctors.id = appoiments.doctor_id AND specialists.id = appoiments.specialist_id AND accept = 0";
-
-                $sql1 = "SELECT * FROM specialists WHERE id = $your_specialist_id";
-                        
-                $stmt = $conn->prepare($sqlaccept);
-                $stmy = $conn->prepare($sqlyet);
-                $sql1_run = $conn->query($sql1);
-
-                $stmt->bindParam(':specialist_id', $your_specialist_id, PDO::PARAM_INT);
-                $stmt->execute();
-
-                $stmy->bindParam(':specialist_id', $your_specialist_id, PDO::PARAM_INT);
-                $stmy->execute();}
-                 foreach($sql1_run as $title ):?>
-                    <a class="navbar-brand" href="#"><?= $title['name'] ?></a>
-                <?php endforeach; ?>
-            <a class="" href="#">
-                <button class="btn btn-light">LOGOUT</button>
-            </a>
+            <a class="navbar-brand" href="adminIndex.php"><i class="fa-solid fa-arrow-left"></i> Back to Home Page</a>
+            <?php foreach($sql1_run as $title ):?>
+                <span class="navbar-text ms-3"><?= $title['name'] ?></span>
+            <?php endforeach; ?>
+            <div class="ms-auto">
+                <a href="../actions/etpLogout.php">
+                    <button class="btn btn-light">LOGOUT</button>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -152,3 +160,11 @@
     </div>
 </body>
 </html>
+<?php 
+exit();
+}
+else{
+    header("Location:../views/etpForm.php");
+    exit();
+}
+?>
