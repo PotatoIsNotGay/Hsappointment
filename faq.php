@@ -98,25 +98,4 @@
     <?php include"footer.php"?>
 
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var accordion = document.getElementById('faqAccordion');
-    
-        accordion.addEventListener('show.bs.collapse', function (e) {
-            var target = e.target;
-            var button = target.previousElementSibling.querySelector('.accordion-button');
-            button.querySelector('.fa-book-medical').style.display = 'none';
-            button.querySelector('.fa-book-open').style.display = 'inline-block';
-        });
-    
-        accordion.addEventListener('hide.bs.collapse', function (e) {
-            var target = e.target;
-            var button = target.previousElementSibling.querySelector('.accordion-button');
-            button.querySelector('.fa-book-medical').style.display = 'inline-block';
-            button.querySelector('.fa-book-open').style.display = 'none';
-        });
-    });
-    </script>
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
