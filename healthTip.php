@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Explicitly define database connection parameters
 $servername = "localhost"; // MySQL Host Name

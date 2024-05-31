@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +26,9 @@
       transition: border-color 0.8s ease;
       font-size: 18px; /* Add transition for slower hover effect */
     }
-
     .nav-link:hover {
       border-color: #01040d; /* Change underline color on hover */
     }
-
     /* Remove focus ring from nav toggler */
     .navbar-toggler:focus {
       outline: none;
@@ -35,7 +38,8 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php">Hospital</a>  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.php">Hospital</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -55,6 +59,11 @@
           <li class="nav-item">
             <a class="nav-link" href="offcanvas.php">My Acc</a>
           </li>
+          <?php if (isset($_SESSION['admin_name'])): ?>
+              <li class="nav-item">
+                  <a class="nav-link" href="views/adminindex.php">Admin Panel</a>
+              </li>
+          <?php endif; ?>
         </ul>
       </div>
     </div>
