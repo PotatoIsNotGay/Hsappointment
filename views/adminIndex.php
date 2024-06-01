@@ -124,7 +124,7 @@ if(isset($_SESSION['admin_name'])) {
 <script>
   function updateMyanmarTime() {
     var now = new Date();
-    var options = {timeZone: 'Asia/Yangon', hour24: false};
+    var options = {timeZone: 'Asia/Yangon', hour12: false};
     var myanmarTime = now.toLocaleString('en-UK', options);
     document.getElementById("myanmar-time").innerHTML = myanmarTime;
   }
@@ -136,7 +136,7 @@ if(isset($_SESSION['admin_name'])) {
 </html>
 <?php
 } else {
-  header("Location: ../views/etpForm.php");
+  header("Location: ../index.php");
   exit();
 }
 ?>

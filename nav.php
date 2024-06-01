@@ -31,7 +31,7 @@ if (session_status() == PHP_SESSION_NONE) {
     .nav-link:hover {
       border-color: #01040d; /* Change underline color on hover */
     }
-    .admin-panel-link {
+    .admin-panel-link, .admin-login-link {
       background-color: #0d1a42;
       color: #ffffff !important;
       border-radius: 5px; /* Slightly rounded corners */
@@ -40,7 +40,7 @@ if (session_status() == PHP_SESSION_NONE) {
       display: flex; /* Use flex for vertical alignment */
       align-items: center; /* Center align the text vertically */
     }
-    .admin-panel-link:hover {
+    .admin-panel-link:hover, .admin-login-link:hover {
       background-color: #2fd6b5; /* Hover effect for admin panel link */
       color: #0d1a42 !important;
     }
@@ -78,6 +78,12 @@ if (session_status() == PHP_SESSION_NONE) {
               <li class="nav-item">
                   <a class="nav-link admin-panel-link" href="views/adminindex.php">
                       <i class="fa-solid fa-user-shield"></i> Admin Panel
+                  </a>
+              </li>
+          <?php else: ?>
+              <li class="nav-item">
+                  <a class="nav-link admin-login-link" href="views/etpForm.php">
+                      <i class="fa-solid fa-sign-in-alt"></i> Admin Login
                   </a>
               </li>
           <?php endif; ?>

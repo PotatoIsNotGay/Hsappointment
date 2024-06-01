@@ -3,4 +3,4 @@ session_start();
 
 session_destroy();
 
-header("Location:../views/etpForm.php?logout");  // Redirect to a logout page (optional)
+header("Location:../index.php");  // Redirect to a logout page (optional)
