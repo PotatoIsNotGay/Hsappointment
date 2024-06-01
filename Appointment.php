@@ -53,6 +53,7 @@ if (isset($_SESSION['user_name'])) {
     </style>
 </head>
 <body>
+<?php include"nav.php"; ?>
     <div class="container-fluid">
         <img src="Photos/d_and_p.jpg" alt="" class="mt-3 rounded w-100" style="height: 300px;">
     </div>
@@ -130,7 +131,7 @@ if (isset($_SESSION['user_name'])) {
         </div>
     </div>
 </div>
-
+<?php include "footer.php"; ?>
 </body>
 </html>
 
